@@ -1,0 +1,14 @@
+org\jorge\conexia\prueba\restaurante\lamejorcocina\repository\DetalleFacturaRepository.class
+org\jorge\conexia\prueba\restaurante\lamejorcocina\model\DetalleFactura.class
+org\jorge\conexia\prueba\restaurante\lamejorcocina\LaMejorCocinaApplication.class
+org\jorge\conexia\prueba\restaurante\lamejorcocina\model\Factura.class
+org\jorge\conexia\prueba\restaurante\lamejorcocina\model\Cocinero.class
+org\jorge\conexia\prueba\restaurante\lamejorcocina\model\Cliente.class
+org\jorge\conexia\prueba\restaurante\lamejorcocina\controller\FacturaController.class
+org\jorge\conexia\prueba\restaurante\lamejorcocina\model\Camarero.class
+org\jorge\conexia\prueba\restaurante\lamejorcocina\model\Mesa.class
+org\jorge\conexia\prueba\restaurante\lamejorcocina\repository\MesaRepository.class
+org\jorge\conexia\prueba\restaurante\lamejorcocina\repository\ClienteRepository.class
+org\jorge\conexia\prueba\restaurante\lamejorcocina\repository\CamareroRepository.class
+org\jorge\conexia\prueba\restaurante\lamejorcocina\repository\FacturaRepository.class
+org\jorge\conexia\prueba\restaurante\lamejorcocina\repository\CocineroRepository.class

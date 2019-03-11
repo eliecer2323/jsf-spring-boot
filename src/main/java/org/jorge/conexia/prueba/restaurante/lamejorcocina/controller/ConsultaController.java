@@ -3,8 +3,14 @@ package org.jorge.conexia.prueba.restaurante.lamejorcocina.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+
+import org.hibernate.Query;
+import org.hibernate.transform.Transformers;
 import org.jorge.conexia.prueba.restaurante.lamejorcocina.model.Camarero;
+import org.jorge.conexia.prueba.restaurante.lamejorcocina.model.CamareroVO;
 import org.jorge.conexia.prueba.restaurante.lamejorcocina.model.Cliente;
+import org.jorge.conexia.prueba.restaurante.lamejorcocina.model.ClienteVO;
 import org.jorge.conexia.prueba.restaurante.lamejorcocina.model.DetalleFactura;
 import org.jorge.conexia.prueba.restaurante.lamejorcocina.model.Factura;
 import org.jorge.conexia.prueba.restaurante.lamejorcocina.repository.CamareroRepository;
@@ -24,42 +30,29 @@ import org.springframework.stereotype.Component;
 public class ConsultaController {
 
 	@Autowired
-    private FacturaRepository facturaRepository;
-    @Autowired
-    private ClienteRepository clienteRepository;
-    @Autowired
-    private CamareroRepository camareroRepository;
-    @Autowired
-    private DetalleFacturaRepository detalleFacturaRepository;
+	private EntityManager entityManager;
 
-    private Factura factura = new Factura();
-    private Cliente cliente = new Cliente();
-    private Camarero camarero = new Camarero();    
-    private List<DetalleFactura> detallesFactura = new ArrayList<DetalleFactura>();
-    
-	public Factura getFactura() {
-		return factura;
+	private List<CamareroVO> camareros = new ArrayList<CamareroVO>();
+	private List<ClienteVO> clientes = new ArrayList<ClienteVO>();
+
+	public List<CamareroVO> getCamareros() {
+		camareros = entityManager
+				.createQuery("select * from CAMARERO c, FACTURA f, DETALLE_FACTURA dt "
+						+ "where c.ID_CAMARERO=f.ID_CAMARERO, f.ID_FACTURA=dt.ID_FACTURA")
+				.unwrap(Query.class).setResultTransformer(Transformers.aliasToBean(CamareroVO.class)).list();
+		return camareros;
 	}
-	public void setFactura(Factura factura) {
-		this.factura = factura;
+
+	public void setCamareros(List<CamareroVO> camareros) {
+		this.camareros = camareros;
 	}
-	public Cliente getCliente() {
-		return cliente;
+
+	public List<ClienteVO> getClientes() {
+		return clientes;
 	}
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
+
+	public void setClientes(List<ClienteVO> clientes) {
+		this.clientes = clientes;
 	}
-	public Camarero getCamarero() {
-		return camarero;
-	}
-	public void setCamarero(Camarero camarero) {
-		this.camarero = camarero;
-	}
-	public List<DetalleFactura> getDetallesFactura() {
-		return detallesFactura;
-	}
-	public void setDetallesFactura(List<DetalleFactura> detallesFactura) {
-		this.detallesFactura = detallesFactura;
-	}
-    
+
 }

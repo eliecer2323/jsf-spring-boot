@@ -11,86 +11,29 @@
 		<h:form id="queryForm">
 			<p:growl id="msgs" showDetail="true" />
 			<p:panel header="Cuota Camareros">
-				<p:dataTable id="camareros" widgetVar="detallesFactura"
-					var="detalle" value="#{facturaController.detallesFactura}"
-					editable="true" style="margin-bottom:20px">
-					<f:facet name="header">Detalle</f:facet>
-
-					<p:ajax event="rowEdit"
-						listener="#{facturaController.onConfirmarEdicion}"
-						update=":facturaForm:msgs" />
-					<p:ajax event="rowEditCancel"
-						listener="#{facturaController.onCancelarEdicion}"
-						update=":facturaForm:msgs" />
-
-					<p:column headerText="Plato">
-						<p:cellEditor>
-							<f:facet name="output">
-								<h:outputText value="#{detalle.plato}" />
-							</f:facet>
-							<f:facet name="input">
-								<p:inputText value="#{detalle.plato}" style="width:100%"
-									label="Plato" />
-							</f:facet>
-						</p:cellEditor>
+				<p:dataTable var="camarero" value="#{consultaController.camareros}">
+					<f:facet name="header">
+        				Ventas mensuales por camarero
+    				</f:facet>	
+			
+					<p:column headerText="Mes">
+						<h:outputText value="#{camarero.mes}" />
+					</p:column>
+					
+					<p:column headerText="Nombre">
+						<h:outputText value="#{camarero.nombre}" />
 					</p:column>
 
-					<p:column headerText="Importe">
-						<p:cellEditor>
-							<f:facet name="output">
-								<h:outputText value="#{detalle.importe}" />
-							</f:facet>
-							<f:facet name="input">
-								<p:inputText value="#{detalle.importe}" style="width:100%"
-									label="Importe" />
-							</f:facet>
-						</p:cellEditor>
+					<p:column headerText="Apellido 1">
+						<h:outputText value="#{camarero.apellido1}" />
 					</p:column>
 
-					<p:column style="width:32px">
-						<p:rowEditor />
+					<p:column headerText="Apellido 2">
+						<h:outputText value="#{camarero.apellido2}" />
 					</p:column>
-				</p:dataTable>
-			</p:panel>
-			<p:panel header="Clientes">
-				<p:dataTable id="clientes" widgetVar="detallesFactura"
-					var="detalle" value="#{facturaController.detallesFactura}"
-					editable="true" style="margin-bottom:20px">
-					<f:facet name="header">Detalle</f:facet>
-
-					<p:ajax event="rowEdit"
-						listener="#{facturaController.onConfirmarEdicion}"
-						update=":facturaForm:msgs" />
-					<p:ajax event="rowEditCancel"
-						listener="#{facturaController.onCancelarEdicion}"
-						update=":facturaForm:msgs" />
-
-					<p:column headerText="Plato">
-						<p:cellEditor>
-							<f:facet name="output">
-								<h:outputText value="#{detalle.plato}" />
-							</f:facet>
-							<f:facet name="input">
-								<p:inputText value="#{detalle.plato}" style="width:100%"
-									label="Plato" />
-							</f:facet>
-						</p:cellEditor>
-					</p:column>
-
-					<p:column headerText="Importe">
-						<p:cellEditor>
-							<f:facet name="output">
-								<h:outputText value="#{detalle.importe}" />
-							</f:facet>
-							<f:facet name="input">
-								<p:inputText value="#{detalle.importe}" style="width:100%"
-									label="Importe" />
-							</f:facet>
-						</p:cellEditor>
-					</p:column>
-
-					<p:column style="width:32px">
-						<p:rowEditor />
+					
+					<p:column headerText="Total Facturado">
+						<h:outputText value="#{camarero.totalFacturado}" />
 					</p:column>
 				</p:dataTable>
 			</p:panel>

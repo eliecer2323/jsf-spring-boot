@@ -2,9 +2,14 @@ package org.jorge.conexia.prueba.restaurante.lamejorcocina.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 
 @Entity
 public class CamareroVO {
+	
+	@Id
+	@Column(name = "ID_CAMARERO")
+	private String idCamarero;
 	
 	@Column(name = "NOMBRE")
 	private String nombre;
@@ -60,6 +65,13 @@ public class CamareroVO {
 	public void setTotalFacturado(Double totalFacturado) {
 		this.totalFacturado = totalFacturado;
 	}
-	
+
+	public String getIdCamarero() {
+		return idCamarero;
+	}
+
+	public void setIdCamarero(String idCamarero) {
+		this.idCamarero = idCamarero;
+	}
 	
 }

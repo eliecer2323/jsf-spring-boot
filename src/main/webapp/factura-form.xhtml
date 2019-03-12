@@ -93,10 +93,10 @@
 						<p:outputLabel for="importe" value="Importe: " />
 						<p:inputText id="importe"
 							value="#{facturaController.detalle.importe}" />
-						<p:commandButton value="Agregar detalle"
+						<h:commandButton value="Agregar detalle"
 							styleClass="ui-priority-primary" process="@this"
 							update=":facturaForm:msgs"
-							action="#{facturaController.agregarDetalle(facturaController.detalle)}"
+							action="#{facturaController.agregarDetalle}"
 							oncomplete="PF('detallesFactura').addRow();" />
 					</div>
 				</div>

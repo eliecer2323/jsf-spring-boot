@@ -51,8 +51,9 @@ public class FacturaController {
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
     
-    public void agregarDetalle(DetalleFactura nuevoDetalle) {
-        detallesFactura.add(nuevoDetalle);
+    public void agregarDetalle() {
+        detallesFactura.add(detalle);
+        detalle = new DetalleFactura();
         FacesMessage msg = new FacesMessage("Detalle Agregado", detalle.getPlato());
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }

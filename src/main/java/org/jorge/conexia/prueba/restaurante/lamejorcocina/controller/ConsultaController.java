@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 import org.hibernate.Query;
 import org.hibernate.transform.Transformers;
@@ -29,26 +30,23 @@ import org.springframework.stereotype.Component;
 @Join(path = "/consulta", to = "/factura-query.jsf")
 public class ConsultaController {
 
-	@Autowired
+	@PersistenceContext
 	private EntityManager entityManager;
 
 	private List<CamareroVO> camareros = new ArrayList<CamareroVO>();
 	private List<ClienteVO> clientes = new ArrayList<ClienteVO>();
 
 	public List<CamareroVO> getCamareros() {
-		camareros = entityManager
-				.createQuery("select * from CAMARERO c, FACTURA f, DETALLE_FACTURA dt "
-						+ "where c.ID_CAMARERO=f.ID_CAMARERO, f.ID_FACTURA=dt.ID_FACTURA")
-				.unwrap(Query.class).setResultTransformer(Transformers.aliasToBean(CamareroVO.class)).list();
+//		camareros = this.entityManager.createQuery("SELECT c FROM Customer c", CamareroVO.class).getResultList();
 		return camareros;
+	}
+	
+	public List<ClienteVO> getClientes() {
+		return clientes;
 	}
 
 	public void setCamareros(List<CamareroVO> camareros) {
 		this.camareros = camareros;
-	}
-
-	public List<ClienteVO> getClientes() {
-		return clientes;
 	}
 
 	public void setClientes(List<ClienteVO> clientes) {

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition template="layout.xhtml">
+	<ui:define name="content">
+		<h:form id="facturaForm">
+			<p:growl id="msgs" showDetail="true" />
+			<p:panel header="Datos del cliente">
+				<h:panelGrid columns="2">
+					<p:outputLabel for="nombreCliente" value="Nombre: " />
+					<p:inputText id="nombreCliente"
+						value="#{facturaController.cliente.nombre}" />
+					<p:outputLabel for="apellido1Cliente" value="Apellido 1: " />
+					<p:inputText id="apellido1Cliente"
+						value="#{facturaController.cliente.apellido1}" />
+					<p:outputLabel for="apellido2Cliente" value="Apellido 2: " />
+					<p:inputText id="apellido2Cliente"
+						value="#{facturaController.cliente.apellido2}" />
+					<p:outputLabel for="observacionesCliente" value="Observaciones: " />
+					<p:inputTextarea id="observacionesCliente" rows="6" cols="33"
+						value="#{facturaController.cliente.observaciones}" />
+				</h:panelGrid>
+			</p:panel>
+			<p:panel header="Datos del camarero">
+				<h:panelGrid columns="2">
+					<p:outputLabel for="nombreCamarero" value="Nombre: " />
+					<p:inputText id="nombreCamarero"
+						value="#{facturaController.camarero.nombre}" />
+					<p:outputLabel for="apellido1Camarero" value="Apellido 1: " />
+					<p:inputText id="apellido1Camarero"
+						value="#{facturaController.camarero.apellido1}" />
+					<p:outputLabel for="apellido2Camarero" value="Apellido 2: " />
+					<p:inputText id="apellido2Camarero"
+						value="#{facturaController.camarero.apellido2}" />
+				</h:panelGrid>
+			</p:panel>
+			<p:panel header="Datos de la factura">
+				<h:panelGrid columns="2">
+					<p:outputLabel for="fechaFactura" value="Fecha de la factura: " />
+					<p:calendar id="fechaFactura"
+						value="#{facturaController.factura.fechaFactura}" />
+				</h:panelGrid>
+				<p:dataTable id="detalleFactura" widgetVar="detallesFactura"
+					var="detalle" value="#{facturaController.detallesFactura}"
+					editable="true" style="margin-bottom:20px">
+					<f:facet name="header">Detalle</f:facet>
+
+					<p:ajax event="rowEdit"
+						listener="#{facturaController.onConfirmarEdicion}"
+						update=":facturaForm:msgs" />
+					<p:ajax event="rowEditCancel"
+						listener="#{facturaController.onCancelarEdicion}"
+						update=":facturaForm:msgs" />
+
+					<p:column headerText="Plato">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{detalle.plato}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{detalle.plato}" style="width:100%"
+									label="Plato" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+
+					<p:column headerText="Importe">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{detalle.importe}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{detalle.importe}" style="width:100%"
+									label="Importe" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+
+					<p:column style="width:32px">
+						<p:rowEditor />
+					</p:column>
+				</p:dataTable>
+				<div class="ui-g">
+					<div class="ui-g-12">
+						<p:outputLabel for="platoDetalle" value="Plato: " />
+						<p:inputText id="platoDetalle"
+							value="#{facturaController.detalle.plato}" />
+						<p:outputLabel for="importe" value="Importe: " />
+						<p:inputText id="importe"
+							value="#{facturaController.detalle.importe}" />
+						<h:commandButton value="Agregar detalle"
+							styleClass="ui-priority-primary" process="@this"
+							update=":facturaForm:msgs"
+							action="#{facturaController.agregarDetalle}"
+							oncomplete="PF('detallesFactura').addRow();" />
+					</div>
+				</div>
+			</p:panel>
+			<h:commandButton value="Guardar Factura"
+				styleClass="ui-priority-primary"
+				action="#{facturaController.guardar}" />
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

@@ -1,11 +1,9 @@
 Manifest-Version: 1.0
-Implementation-Title: spring-boot-faces
-Implementation-Version: 1.0-SNAPSHOT
+Implementation-Title: La mejor cocina
+Implementation-Version: 1.0.0
 Built-By: JorgeEliecerSierra
-Implementation-Vendor-Id: com.auth0.samples
+Implementation-Vendor-Id: org.jorge.conexia.prueba
 Build-Jdk: 1.8.0_201
-Implementation-URL: http://projects.spring.io/spring-boot/spring-boot-
- faces/
+Implementation-URL: http://maven.apache.org
 Created-By: Maven Integration for Eclipse
-Implementation-Vendor: Pivotal Software, Inc.
 

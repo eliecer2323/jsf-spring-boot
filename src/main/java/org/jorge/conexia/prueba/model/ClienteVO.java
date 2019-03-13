@@ -8,9 +8,6 @@ import javax.persistence.Id;
 public class ClienteVO {
 	
 	@Id
-	@Column(name = "ID_CLIENTE")
-	private Long idCliente;
-	
 	@Column(name = "NOMBRE")
 	private String nombre;
 	
@@ -22,14 +19,6 @@ public class ClienteVO {
 	
 	@Column(name = "TOTAL_CONSUMIDO")
 	private Double totalConsumido;
-
-	public Long getIdCliente() {
-		return idCliente;
-	}
-
-	public void setIdCliente(Long idCliente) {
-		this.idCliente = idCliente;
-	}
 
 	public String getNombre() {
 		return nombre;

@@ -27,6 +27,10 @@ public class ConsultaController {
 	}
 	
 	public List<ClienteVO> getClientes() {
+		clientes = this.entityManager.createNativeQuery("select * from (select c.nombre, c.apellido1, c.apellido2,sum(df.importe) total_consumido"
+				+ " from cliente c, factura f, detalle_factura df"
+				+ " where c.id_cliente=f.id_cliente and f.id_factura=df.id_factura"
+				+ " group by c.nombre, c.apellido1, c.apellido2) sc where sc.total_consumido>=100000", ClienteVO.class).getResultList();
 		return clientes;
 	}
 
